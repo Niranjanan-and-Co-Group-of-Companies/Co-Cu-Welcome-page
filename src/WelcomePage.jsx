@@ -5,21 +5,28 @@ import logo from './assets/logo_transparent.png';
 
 const WelcomePage = () => {
   const [timeLeft, setTimeLeft] = useState({});
-  const [modalOpen, setModalOpen] = useState(false);
 
-  // Countdown timer: set for 14 days from now
+  // Instead of recalculating each time from now,
+  // use a fixed target date.
+  // IMPORTANT: Update this date to the exact launch date/time.
+  // For example, if you want the initial countdown to be exactly
+  // 16 days, 5 hours, and 59 seconds from launch,
+  // choose the target date accordingly.
+  const targetDateString = "2025-05-01T10:00:00Z"; // Update as needed!
+  
   useEffect(() => {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 14);
-
+    const targetDate = new Date(targetDateString);
+    
     const timer = setInterval(() => {
       const now = new Date();
       const diff = targetDate - now;
+
       if (diff <= 0) {
         clearInterval(timer);
-        setTimeLeft({});
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
+      
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
@@ -28,14 +35,15 @@ const WelcomePage = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [targetDateString]);
 
+  // Functions to control modal and Calendly popup
+  const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
-  // Function to trigger Calendly Popup
   const openCalendlyPopup = (e) => {
-    e.preventDefault(); // Prevent link navigation
+    e.preventDefault();
     if (window.Calendly) {
       window.Calendly.initPopupWidget({ url: 'https://calendly.com/niranjanantcoandcu' });
     }
@@ -44,10 +52,10 @@ const WelcomePage = () => {
 
   return (
     <div className="App">
-      {/* Main content area (centered vertically and horizontally) */}
+      {/* Main content (centered vertically and horizontally) */}
       <div className="main-content">
         <div className="hero-container">
-          {/* Logo: using imported logo from src/assets */}
+          {/* Logo */}
           <img src={logo} alt="Co & Cu Logo" className="hero-logo" />
 
           <motion.h1
@@ -73,7 +81,7 @@ const WelcomePage = () => {
           </p>
 
           {/* Countdown Timer */}
-          {timeLeft.days !== undefined ? (
+          {typeof timeLeft.days !== "undefined" ? (
             <div className="countdown-timer">
               <div className="timer-item">
                 <div className="timer-number">{timeLeft.days}</div>
@@ -119,7 +127,7 @@ const WelcomePage = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
-            {/* "X" icon in top-right corner */}
+            {/* Close Icon */}
             <button className="close-icon-button" onClick={closeModal}>
               &times;
             </button>
@@ -177,7 +185,7 @@ const WelcomePage = () => {
         </div>
       )}
 
-      {/* Footer pinned at bottom */}
+      {/* Footer */}
       <footer className="footer">
         © {new Date().getFullYear()} Co & Cu. Built with care and innovation.
       </footer>
