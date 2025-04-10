@@ -103,11 +103,9 @@ const WelcomePage = () => {
             <button className="cta-button blue" onClick={openModal}>
               Connect with Us – Your Journey Begins Here
             </button>
-            <a href="#" onClick={openCalendlyPopup}>
-              <button className="cta-button green">
-                Schedule Your Consultation
-              </button>
-            </a>
+            <button className="cta-button green" onClick={openCalendlyPopup}>
+              Schedule Your Consultation
+            </button>
           </div>
         </div>
       </div>
