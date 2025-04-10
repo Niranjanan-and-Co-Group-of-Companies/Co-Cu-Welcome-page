@@ -4,23 +4,18 @@ import { motion } from 'framer-motion';
 import logo from './assets/logo_transparent.png';
 
 const WelcomePage = () => {
-  const [timeLeft, setTimeLeft] = useState({});
+  // Fixed countdown target date: update this to match your launch configuration.
+  const targetDateString = "2025-05-01T10:00:00Z"; // Adjust this date/time as needed.
 
-  // Instead of recalculating each time from now,
-  // use a fixed target date.
-  // IMPORTANT: Update this date to the exact launch date/time.
-  // For example, if you want the initial countdown to be exactly
-  // 16 days, 5 hours, and 59 seconds from launch,
-  // choose the target date accordingly.
-  const targetDateString = "2025-05-01T10:00:00Z"; // Update as needed!
-  
+  const [timeLeft, setTimeLeft] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+
   useEffect(() => {
     const targetDate = new Date(targetDateString);
-    
     const timer = setInterval(() => {
       const now = new Date();
       const diff = targetDate - now;
-
+      
       if (diff <= 0) {
         clearInterval(timer);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -31,31 +26,34 @@ const WelcomePage = () => {
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
+      
       setTimeLeft({ days, hours, minutes, seconds });
     }, 1000);
 
     return () => clearInterval(timer);
   }, [targetDateString]);
 
-  // Functions to control modal and Calendly popup
-  const [modalOpen, setModalOpen] = useState(false);
+  // Handler for showing contact modal (if needed)
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
+  // Handler to open Calendly popup
   const openCalendlyPopup = (e) => {
     e.preventDefault();
     if (window.Calendly) {
       window.Calendly.initPopupWidget({ url: 'https://calendly.com/niranjanantcoandcu' });
+    } else {
+      console.error("Calendly script is not loaded.");
     }
     return false;
   };
 
   return (
     <div className="App">
-      {/* Main content (centered vertically and horizontally) */}
+      {/* Main content area */}
       <div className="main-content">
         <div className="hero-container">
-          {/* Logo */}
+          {/* Custom Logo */}
           <img src={logo} alt="Co & Cu Logo" className="hero-logo" />
 
           <motion.h1
@@ -118,7 +116,7 @@ const WelcomePage = () => {
         </div>
       </div>
 
-      {/* Modal Popup */}
+      {/* Modal Popup for additional contact options */}
       {modalOpen && (
         <div className="modal-overlay">
           <motion.div
@@ -127,7 +125,7 @@ const WelcomePage = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Close Icon */}
+            {/* Close Modal */}
             <button className="close-icon-button" onClick={closeModal}>
               &times;
             </button>
@@ -136,7 +134,6 @@ const WelcomePage = () => {
             <p>
               Reach out through your favorite platform and let’s start building something extraordinary.
             </p>
-
             <div className="modal-grid">
               <a href="tel:+919446415489">
                 <img
