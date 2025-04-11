@@ -1,21 +1,53 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    
+    <!-- Responsive viewport meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Co & Cu - Where Custom Meets Care" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <title>Co & Cu</title>
 
-    <!-- Calendly badge widget begin -->
+    <!-- General Description & Keywords -->
+    <meta name="description" content="Co & Cu is the leading customization and corporate gifting platform, connecting businesses with curated vendors for personalized gift solutions." />
+    <meta name="keywords" content="corporate gifting, customization, custom gifts, vendor marketplace, Co & Cu" />
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Co & Cu – Customization & Corporate Gifting Platform" />
+    <meta property="og:description" content="Co & Cu is the leading customization and corporate gifting platform connecting businesses with curated vendors for personalized gift solutions." />
+    <meta property="og:image" content="%PUBLIC_URL%/favico.ico" />
+    <meta property="og:url" content="https://www.coandcu.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Co & Cu – Customization & Corporate Gifting Platform" />
+    <meta name="twitter:description" content="Co & Cu is the leading customization and corporate gifting platform connecting businesses with curated vendors for personalized gift solutions." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/favico.ico" />
+
+    <!-- Favicon and Title -->
+    <link rel="icon" href="%PUBLIC_URL%/favico.ico" />
+    <title>Co & Cu – Customization & Corporate Gifting Platform</title>
+
+    <!-- Structured Data using JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Co & Cu",
+      "url": "https://www.coandcu.com",
+      "logo": "https://www.coandcu.com/favico.ico",
+      "sameAs": [
+        "https://www.instagram.com/coandcu.official/",
+        "https://www.linkedin.com/company/coandcu",
+        "https://www.youtube.com/channel/UCO4JzUW1ppUIJa9J8xe59hA"
+      ],
+      "description": "Co & Cu is the leading customization and corporate gifting platform connecting businesses with curated vendors for personalized gift solutions."
+    }
+    </script>
+
+    <!-- Calendly widget CSS and JS (if needed) -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    <script type="text/javascript">
-      window.onload = function() {
-      };
-    </script>
-    <!-- Calendly badge widget end -->
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
