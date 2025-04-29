@@ -170,12 +170,12 @@ const WelcomePage = () => {
                 />
                 <span>YouTube</span>
               </a>
-              <a href="https://botim.com/919446415489" target="_blank" rel="noreferrer">
+              <a href="mailto:niranjanant@coandcu.com" target="_blank" rel="noreferrer">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/565/565547.png"
-                  alt="Botim"
+                  src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+                  alt="Email"
                 />
-                <span>Botim</span>
+                <span>Email</span>
               </a>
             </div>
           </motion.div>
