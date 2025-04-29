@@ -5,7 +5,7 @@ import logo from './assets/logo_transparent.png';
 
 const WelcomePage = () => {
   // Fixed countdown target date: update this to match your launch configuration.
-  const targetDateString = "2025-05-01T10:00:00Z"; // Adjust this date/time as needed.
+  const targetDateString = "2025-05-14T12:00:00Z"; // Adjust this date/time as needed.
 
   const [timeLeft, setTimeLeft] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
